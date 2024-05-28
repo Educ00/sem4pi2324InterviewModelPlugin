@@ -1,0 +1,93 @@
+@start-reference@ "AAAAAAAA-JuniorJavaSoftwareEngineer-FULL_TIME" @end-reference@
+
+@start-question@
+    @start-type@ true-false @end-type@
+    @start-question-body@ "É verdade que Python é lento?" @end-question-body@
+    @start-correct-answer@ TrUe
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ true-false @end-type@
+    @start-question-body@ "É verdade que Java é lento?" @end-question-body@
+    @start-correct-answer@ false
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ short-answer @end-type@
+    @start-question-body@ "Qual é a sua linguagem preferencial?" @end-question-body@
+    @start-correct-answer@ "Java"
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+    @start-correct-answer@ "C"
+        @start-score@ 5 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ single-choice @end-type@
+    @start-question-body@ "Escolha a linguagem mais rápida:"
+        @start-choice@ 1 "Java" @end-choice@
+        @start-choice@ 2 "C" @end-choice@
+        @start-choice@ 3 "C++" @end-choice@
+    @end-question-body@
+    @start-correct-answer@ 2
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ multiple-choice @end-type@
+    @start-question-body@ "Ordene as seguintes linguagem por ordem crescente de rapidez:"
+        @start-choice@ 1 "Java" @end-choice@
+        @start-choice@ 2 "C" @end-choice@
+        @start-choice@ 3 "Python" @end-choice@
+    @end-question-body@
+    @start-correct-answer@ [2, 3, 4]
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ numerical @end-type@
+    @start-question-body@ "Quanto é 1 + 1?" @end-question-body@
+    @start-correct-answer@ 2
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ numerical @end-type@
+    @start-question-body@ "Qual o valor de PI?" @end-question-body@
+    @start-correct-answer@ 3.1415
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ date @end-type@
+    @start-question-body@ "Qual é o ano em que Portugal foi campeão europeu?" @end-question-body@
+    @start-correct-answer@ 10/07/2016
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ time @end-type@
+    @start-question-body@ "A que horas começou a final em que Portugal foi campeão europeu?" @end-question-body@
+    @start-correct-answer@ 21:00:00
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ numeric-scale @end-type@
+    @start-question-body@ "Escreva o intervalo de numeros naturais menor que 10" @end-question-body@
+    @start-correct-answer@ [1-10]
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+

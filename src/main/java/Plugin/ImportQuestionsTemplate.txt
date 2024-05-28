@@ -1,0 +1,76 @@
+@start-reference@ "Job Reference (beetween ")" @end-reference@
+
+@start-question@
+    @start-type@ true-false @end-type@
+    @start-question-body@ "Question (between quotation marks)" @end-question-body@
+    @start-correct-answer@ true/false 
+        @start-score@ 0 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ short-answer @end-type@
+    @start-question-body@ "Question (between quotation marks)" @end-question-body@
+    @start-correct-answer@ "Answer (between quotation marks)"
+        @start-score@ 0 @end-score@
+    @end-correct-answer@
+    @start-correct-answer@ "Answer (between quotation marks)"
+        @start-score@ 0 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ single-choice @end-type@
+    @start-question-body@ "Question (between quotation marks)"
+        @start-choice@ 1 "Choice (between quotation marks)" @end-choice@
+        @start-choice@ 2 "Choice (between quotation marks)" @end-choice@
+        @start-choice@ 3 "Choice (between quotation marks)" @end-choice@
+    @end-question-body@
+    @start-correct-answer@ 1
+        @start-score@ 0 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ multiple-choice @end-type@
+    @start-question-body@ "Question (between quotation marks)"
+        @start-choice@ 1 "Choice (between quotation marks)" @end-choice@
+        @start-choice@ 2 "Choice (between quotation marks)" @end-choice@
+        @start-choice@ 3 "Choice (between quotation marks)" @end-choice@
+    @end-question-body@
+    @start-correct-answer@ [2, 3, 1]
+        @start-score@ 0 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ numerical @end-type@
+    @start-question-body@ "Question (between quotation marks)" @end-question-body@
+    @start-correct-answer@ 1
+        @start-score@ 0 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ date @end-type@
+    @start-question-body@ "Question (between quotation marks)" @end-question-body@
+    @start-correct-answer@ dd/mm/yyyy
+        @start-score@ 0 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ time @end-type@
+    @start-question-body@ "Question (between quotation marks)" @end-question-body@
+    @start-correct-answer@ hh:mm:ss
+        @start-score@ 0 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ numeric-scale @end-type@
+    @start-question-body@ "Question (between quotation marks)" @end-question-body@
+    @start-correct-answer@ [1-10]
+        @start-score@ 0 @end-score@
+    @end-correct-answer@
+@end-question@
