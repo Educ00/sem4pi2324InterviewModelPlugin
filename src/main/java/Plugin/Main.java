@@ -1,8 +1,10 @@
 package Plugin;
 
-import Plugin.antlr4.GrammerLexer;
-import Plugin.antlr4.GrammerParser;
+import Plugin.ImportQuestionsAndAnswers.CustomListener;
+import Plugin.ImportQuestionsAndAnswers.GrammarLexer;
+import Plugin.ImportQuestionsAndAnswers.GrammarParser;
 import eapli.jobs4u.app.plugin.Application.InterviewModelImporter;
+import eapli.jobs4u.app.question.domain.Answer;
 import eapli.jobs4u.app.question.domain.Choice;
 import eapli.jobs4u.app.question.domain.Question;
 import org.antlr.v4.runtime.CharStreams;
@@ -22,15 +24,15 @@ import java.util.Set;
 public class Main implements InterviewModelImporter {
 
     @Override
-    public Set<Question> parseQuestionsAndAnswersFile(String inputFilePath) {
+    public Set<Question> parseFile(String inputFilePath) {
         Set<Question> setToReturn = new HashSet<>();
         try {
             // Create a lexer that feeds off of input CharStream
-            GrammerLexer lexer = new GrammerLexer(CharStreams.fromFileName(inputFilePath));
+            GrammarLexer lexer = new GrammarLexer(CharStreams.fromFileName(inputFilePath));
             // Create a buffer of tokens between the lexer and parser
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             // Create a parser that feeds off the tokens buffer
-            GrammerParser parser = new GrammerParser(tokens);
+            GrammarParser parser = new GrammarParser(tokens);
             // Begin parsing at the start rule
             ParseTree tree = parser.start();
             // Create a walker for walking the parse tree
@@ -165,6 +167,15 @@ public class Main implements InterviewModelImporter {
             exception.printStackTrace();
         }
         try (BufferedWriter writer = Files.newBufferedWriter(Path.of(outputFilePath), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
+            writer.write("// --------------------------------------------------------------------------------");
+            writer.newLine();
+            writer.write("// ONLY WRITE ON THE ANSWER FIElDS.");
+            writer.newLine();
+            writer.write("// DO NOT CHANGE THE ORDER OR ADD SPACES, TABS OR OTHER CHARACTERS IN THE DOCUMENT");
+            writer.newLine();
+            writer.write("// --------------------------------------------------------------------------------");
+            writer.newLine();
+            writer.newLine();
             writer.write("@start-reference@ " + questionSet.iterator().next().jobOpeningReference().toString() +" @end-reference@");
             writer.newLine();
             writer.newLine();
@@ -270,5 +281,29 @@ public class Main implements InterviewModelImporter {
 
 
         return outputFilePath;
+    }
+
+    @Override
+    public double gradeInterview(String interviewFilePath, Set<Question> scoreQuestions) {
+        double score = 0;
+        for (Question interviewQuestion : parseFile(interviewFilePath)){
+            for (Question scoreQuestion : scoreQuestions){
+                if (interviewQuestion.body().equals(scoreQuestion.body())){
+                    System.out.println("\nInterview q: " + interviewQuestion.body());
+                    System.out.println("Score q: " + scoreQuestion.body());
+                    for (Answer interviewAnswer : interviewQuestion.correctAnswers()){
+                        for (Answer scoreAnswer : scoreQuestion.correctAnswers()){
+                            if (interviewAnswer.givenAnswerBody().equals(scoreAnswer.correctAnswerBody())){
+                                System.out.println("Interview a: " + interviewAnswer.givenAnswerBody());
+                                System.out.println("Score a: " + scoreAnswer.correctAnswerBody());
+                                score += scoreAnswer.score();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return score;
     }
 }

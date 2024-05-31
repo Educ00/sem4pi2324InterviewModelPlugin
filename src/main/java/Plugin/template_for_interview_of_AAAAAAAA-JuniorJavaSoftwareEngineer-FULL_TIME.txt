@@ -1,8 +1,13 @@
+// --------------------------------------------------------------------------------
+// ONLY WRITE ON THE ANSWER FIElDS.
+// DO NOT CHANGE THE ORDER OR ADD SPACES, TABS OR OTHER CHARACTERS IN THE DOCUMENT
+// --------------------------------------------------------------------------------
+
 @start-reference@ AAAAAAAA-JuniorJavaSoftwareEngineer-FULL_TIME @end-reference@
 
 @start-question@
     @start-type@ true-false @end-type@
-    @start-question-body@ "É verdade que Python é lento?" @end-question-body@
+    @start-question-body@ "É verdade que Java é lento?" @end-question-body@
     @start-correct-answer@  @end-correct-answer@
  @end-question@
 
@@ -19,11 +24,8 @@
  @end-question@
 
 @start-question@
-    @start-type@ single-choice @end-type@
-    @start-question-body@ "Escolha a linguagem mais rápida:" @end-question-body@
-        @start-choice@ 3 "C++" @end-choice@
-        @start-choice@ 1 "Java" @end-choice@
-        @start-choice@ 2 "C" @end-choice@
+    @start-type@ true-false @end-type@
+    @start-question-body@ "É verdade que Python é lento?" @end-question-body@
     @start-correct-answer@  @end-correct-answer@
  @end-question@
 
@@ -34,8 +36,11 @@
  @end-question@
 
 @start-question@
-    @start-type@ true-false @end-type@
-    @start-question-body@ "É verdade que Java é lento?" @end-question-body@
+    @start-type@ single-choice @end-type@
+    @start-question-body@ "Escolha a linguagem mais rápida:" @end-question-body@
+        @start-choice@ 3 "C++" @end-choice@
+        @start-choice@ 1 "Java" @end-choice@
+        @start-choice@ 2 "C" @end-choice@
     @start-correct-answer@  @end-correct-answer@
  @end-question@
 

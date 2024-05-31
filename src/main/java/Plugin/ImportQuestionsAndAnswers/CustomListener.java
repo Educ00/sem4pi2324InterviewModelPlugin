@@ -1,7 +1,4 @@
-package Plugin;
-
-import Plugin.antlr4.GrammerBaseListener;
-import Plugin.antlr4.GrammerParser;
+package Plugin.ImportQuestionsAndAnswers;
 
 import eapli.jobs4u.app.jobopening.domain.JobOpeningReference;
 import eapli.jobs4u.app.question.domain.*;
@@ -13,7 +10,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class CustomListener extends GrammerBaseListener {
+public class CustomListener extends GrammarBaseListener {
     private Set<Question> questionAndAnswers = new HashSet<>();
 
     private JobOpeningReference reference;
@@ -22,13 +19,13 @@ public class CustomListener extends GrammerBaseListener {
     private Set<Choice> choices;
     private Set<Answer> correctAnswers;
 
-    private String multipleChoiceAnswer;
     private String answerBody;
     private double score;
 
     private int index;
     private String choiceBody;
 
+    private boolean isToImportQuestions = false;
 
     public Set<Question> questionSet() {
         return this.questionAndAnswers;
@@ -49,12 +46,15 @@ public class CustomListener extends GrammerBaseListener {
 
     public void addAnswerByBuilder() {
         AnswerBuilder answerBuilder = new AnswerBuilder();
-        correctAnswers.add(
-                answerBuilder
-                        .withScore(score)
-                        .withBody(answerBody.replaceAll("\"", "").trim())
-                        .build()
-        );
+        answerBuilder.withScore(score);
+
+        if (isToImportQuestions) {
+            answerBuilder.withCorrectAnswerBody(answerBody.replaceAll("\"", "").trim());
+        } else {
+            answerBuilder.withGivenAnswerBody(answerBody.replaceAll("\"", "").trim());
+        }
+
+        correctAnswers.add(answerBuilder.build());
     }
 
     public void addChoiceByBuilder() {
@@ -67,97 +67,99 @@ public class CustomListener extends GrammerBaseListener {
         );
     }
 
-    @Override public void enterJobOpeningReference(GrammerParser.JobOpeningReferenceContext ctx) {
+    @Override
+    public void enterJobOpeningReference(GrammarParser.JobOpeningReferenceContext ctx) {
         reference = new JobOpeningReference(ctx.STRING().getText().replaceAll("\"", ""));
     }
 
 
     @Override
-    public void enterQuestion(GrammerParser.QuestionContext ctx) {
+    public void enterQuestion(GrammarParser.QuestionContext ctx) {
         choices = new HashSet<>();
         correctAnswers = new HashSet<>();
     }
 
     @Override
-    public void exitQuestion(GrammerParser.QuestionContext ctx) {
+    public void exitQuestion(GrammarParser.QuestionContext ctx) {
         addQuestionByBuilder();
     }
 
     @Override
-    public void enterScore(GrammerParser.ScoreContext ctx) {
+    public void enterScore(GrammarParser.ScoreContext ctx) {
+        isToImportQuestions = true;
         score = Double.parseDouble(ctx.NUMBER().getText());
     }
 
     @Override
-    public void enterQuestionBody(GrammerParser.QuestionBodyContext ctx) {
+    public void enterQuestionBody(GrammarParser.QuestionBodyContext ctx) {
         questionBody = ctx.STRING().getText().replaceAll("\"", "");
     }
 
     @Override
-    public void enterChoice(GrammerParser.ChoiceContext ctx) {
+    public void enterChoice(GrammarParser.ChoiceContext ctx) {
         index = Integer.parseInt(ctx.NUMBER().getText());
         choiceBody = ctx.STRING().getText();
     }
 
     @Override
-    public void exitChoice(GrammerParser.ChoiceContext ctx) {
+    public void exitChoice(GrammarParser.ChoiceContext ctx) {
         addChoiceByBuilder();
     }
 
     @Override
-    public void enterTrueFalseQuestion(GrammerParser.TrueFalseQuestionContext ctx) {
+    public void enterTrueFalseQuestion(GrammarParser.TrueFalseQuestionContext ctx) {
         questionType = QuestionType.TrueFalse;
     }
 
 
     @Override
-    public void enterTrueFalseAnswer(GrammerParser.TrueFalseAnswerContext ctx) {
+    public void enterTrueFalseAnswer(GrammarParser.TrueFalseAnswerContext ctx) {
         answerBody = ctx.BOOLEAN().getText();
     }
 
     @Override
-    public void exitTrueFalseAnswer(GrammerParser.TrueFalseAnswerContext ctx) {
+    public void exitTrueFalseAnswer(GrammarParser.TrueFalseAnswerContext ctx) {
         addAnswerByBuilder();
     }
 
 
     @Override
-    public void enterShortAnswerQuestion(GrammerParser.ShortAnswerQuestionContext ctx) {
+    public void enterShortAnswerQuestion(GrammarParser.ShortAnswerQuestionContext ctx) {
         questionType = QuestionType.ShortAnswer;
     }
 
     @Override
-    public void enterShortAnswerAnswer(GrammerParser.ShortAnswerAnswerContext ctx) {
+    public void enterShortAnswerAnswer(GrammarParser.ShortAnswerAnswerContext ctx) {
         answerBody = ctx.STRING().getText();
     }
 
     @Override
-    public void exitShortAnswerAnswer(GrammerParser.ShortAnswerAnswerContext ctx) {
+    public void exitShortAnswerAnswer(GrammarParser.ShortAnswerAnswerContext ctx) {
         addAnswerByBuilder();
     }
 
     @Override
-    public void enterSingleChoiceQuestion(GrammerParser.SingleChoiceQuestionContext ctx) {
+    public void enterSingleChoiceQuestion(GrammarParser.SingleChoiceQuestionContext ctx) {
         questionType = QuestionType.SingleChoice;
     }
 
     @Override
-    public void enterSingleChoiceAnswer(GrammerParser.SingleChoiceAnswerContext ctx) {
+    public void enterSingleChoiceAnswer(GrammarParser.SingleChoiceAnswerContext ctx) {
         answerBody = ctx.NUMBER().getText();
     }
 
     @Override
-    public void exitSingleChoiceAnswer(GrammerParser.SingleChoiceAnswerContext ctx) {
+    public void exitSingleChoiceAnswer(GrammarParser.SingleChoiceAnswerContext ctx) {
         addAnswerByBuilder();
     }
 
     @Override
-    public void enterMultipleChoiceQuestion(GrammerParser.MultipleChoiceQuestionContext ctx) {
+    public void enterMultipleChoiceQuestion(GrammarParser.MultipleChoiceQuestionContext ctx) {
         questionType = QuestionType.MultipleChoice;
     }
 
     @Override
-    public void enterMultipleChoiceAnswer(GrammerParser.MultipleChoiceAnswerContext ctx) {
+    public void enterMultipleChoiceAnswer(GrammarParser.MultipleChoiceAnswerContext ctx) {
         Iterator<TerminalNode> iterator = ctx.NUMBER().iterator();
         answerBody = iterator.next().getText();
         while (iterator.hasNext()) {
@@ -168,67 +170,67 @@ public class CustomListener extends GrammerBaseListener {
     }
 
     @Override
-    public void exitMultipleChoiceAnswer(GrammerParser.MultipleChoiceAnswerContext ctx) {
+    public void exitMultipleChoiceAnswer(GrammarParser.MultipleChoiceAnswerContext ctx) {
         addAnswerByBuilder();
     }
 
     @Override
-    public void enterNumericalQuestion(GrammerParser.NumericalQuestionContext ctx) {
+    public void enterNumericalQuestion(GrammarParser.NumericalQuestionContext ctx) {
         questionType = QuestionType.Numerical;
     }
 
     @Override
-    public void enterNumericalAnswer(GrammerParser.NumericalAnswerContext ctx) {
+    public void enterNumericalAnswer(GrammarParser.NumericalAnswerContext ctx) {
         answerBody = ctx.NUMBER().getText();
     }
 
     @Override
-    public void exitNumericalAnswer(GrammerParser.NumericalAnswerContext ctx) {
+    public void exitNumericalAnswer(GrammarParser.NumericalAnswerContext ctx) {
         addAnswerByBuilder();
     }
 
     @Override
-    public void enterDateQuestion(GrammerParser.DateQuestionContext ctx) {
+    public void enterDateQuestion(GrammarParser.DateQuestionContext ctx) {
         questionType = QuestionType.Date;
     }
 
     @Override
-    public void enterDateAnswer(GrammerParser.DateAnswerContext ctx) {
+    public void enterDateAnswer(GrammarParser.DateAnswerContext ctx) {
         answerBody = ctx.DATE().getText();
     }
 
     @Override
-    public void exitDateAnswer(GrammerParser.DateAnswerContext ctx) {
+    public void exitDateAnswer(GrammarParser.DateAnswerContext ctx) {
         addAnswerByBuilder();
     }
 
     @Override
-    public void enterTimeQuestion(GrammerParser.TimeQuestionContext ctx) {
+    public void enterTimeQuestion(GrammarParser.TimeQuestionContext ctx) {
         questionType = QuestionType.Time;
     }
 
     @Override
-    public void enterTimeAnswer(GrammerParser.TimeAnswerContext ctx) {
+    public void enterTimeAnswer(GrammarParser.TimeAnswerContext ctx) {
         answerBody = ctx.TIME().getText();
     }
 
     @Override
-    public void exitTimeAnswer(GrammerParser.TimeAnswerContext ctx) {
+    public void exitTimeAnswer(GrammarParser.TimeAnswerContext ctx) {
         addAnswerByBuilder();
     }
 
     @Override
-    public void enterNumericScaleQuestion(GrammerParser.NumericScaleQuestionContext ctx) {
+    public void enterNumericScaleQuestion(GrammarParser.NumericScaleQuestionContext ctx) {
         questionType = QuestionType.NumericScale;
     }
 
     @Override
-    public void enterNumericScaleAnswer(GrammerParser.NumericScaleAnswerContext ctx) {
+    public void enterNumericScaleAnswer(GrammarParser.NumericScaleAnswerContext ctx) {
         answerBody = ctx.SCALE().getText();
     }
 
     @Override
-    public void exitNumericScaleAnswer(GrammerParser.NumericScaleAnswerContext ctx) {
+    public void exitNumericScaleAnswer(GrammarParser.NumericScaleAnswerContext ctx) {
         addAnswerByBuilder();
     }
 
