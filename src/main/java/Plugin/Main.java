@@ -176,7 +176,7 @@ public class Main implements InterviewModelImporter {
             writer.write("// --------------------------------------------------------------------------------");
             writer.newLine();
             writer.newLine();
-            writer.write("@start-reference@ " + questionSet.iterator().next().jobOpeningReference().toString() +" @end-reference@");
+            writer.write("@start-reference@ \"" + questionSet.iterator().next().jobOpeningReference().toString() +"\" @end-reference@");
             writer.newLine();
             writer.newLine();
             for (Question question : questionSet){
@@ -184,89 +184,105 @@ public class Main implements InterviewModelImporter {
                     case TrueFalse:
                         writer.write("@start-question@\n" +
                                 "    @start-type@ true-false @end-type@\n" +
-                                "    @start-question-body@ \"" + question.body() + "\" @end-question-body@\n");
+                                "    @start-question-body@ \"" + question.body() + "\" ");
+                        writer.newLine();
                         if (!question.choices().isEmpty()){
                             for (Choice choice : question.choices()){
                                 writer.write("        @start-choice@ " + choice.index() + " " + "\"" + choice.body() + "\" @end-choice@\n");
                             }
                         }
+                        writer.write("    @end-question-body@\n");
                         writer.write("    @start-correct-answer@  @end-correct-answer@\n @end-question@");
                         break;
                     case ShortAnswer:
                         writer.write("@start-question@\n" +
                                 "    @start-type@ short-answer @end-type@\n" +
-                                "    @start-question-body@ \"" + question.body() + "\" @end-question-body@\n");
+                                "    @start-question-body@ \"" + question.body() + "\" ");
+                        writer.newLine();
                         if (!question.choices().isEmpty()){
                             for (Choice choice : question.choices()){
                                 writer.write("        @start-choice@ " + choice.index() + " " + "\"" + choice.body() + "\" @end-choice@\n");
                             }
                         }
+                        writer.write("    @end-question-body@\n");
                         writer.write("    @start-correct-answer@  @end-correct-answer@\n @end-question@");
                         break;
                     case SingleChoice:
                         writer.write("@start-question@\n" +
                                 "    @start-type@ single-choice @end-type@\n" +
-                                "    @start-question-body@ \"" + question.body() + "\" @end-question-body@\n");
+                                "    @start-question-body@ \"" + question.body() + "\" ");
+                        writer.newLine();
                         if (!question.choices().isEmpty()){
                             for (Choice choice : question.choices()){
                                 writer.write("        @start-choice@ " + choice.index() + " " + "\"" + choice.body() + "\" @end-choice@\n");
                             }
                         }
+                        writer.write("    @end-question-body@\n");
                         writer.write("    @start-correct-answer@  @end-correct-answer@\n @end-question@");
                         break;
                     case MultipleChoice:
                         writer.write("@start-question@\n" +
                                 "    @start-type@ multiple-choice @end-type@\n" +
-                                "    @start-question-body@ \"" + question.body() + "\" @end-question-body@\n");
+                                "    @start-question-body@ \"" + question.body() + "\" ");
+                        writer.newLine();
                         if (!question.choices().isEmpty()){
                             for (Choice choice : question.choices()){
                                 writer.write("        @start-choice@ " + choice.index() + " " + "\"" + choice.body() + "\" @end-choice@\n");
                             }
                         }
+                        writer.write("    @end-question-body@\n");
                         writer.write("    @start-correct-answer@  @end-correct-answer@\n @end-question@");
                         break;
                     case Numerical:
                         writer.write("@start-question@\n" +
                                 "    @start-type@ numerical @end-type@\n" +
-                                "    @start-question-body@ \"" + question.body() + "\" @end-question-body@\n");
+                                "    @start-question-body@ \"" + question.body() + "\" ");
+                        writer.newLine();
                         if (!question.choices().isEmpty()){
                             for (Choice choice : question.choices()){
                                 writer.write("        @start-choice@ " + choice.index() + " " + "\"" + choice.body() + "\" @end-choice@\n");
                             }
                         }
+                        writer.write("    @end-question-body@\n");
                         writer.write("    @start-correct-answer@  @end-correct-answer@\n @end-question@");
                         break;
                     case Date:
                         writer.write("@start-question@\n" +
                                 "    @start-type@ date @end-type@\n" +
-                                "    @start-question-body@ \"" + question.body() + "\" @end-question-body@\n");
+                                "    @start-question-body@ \"" + question.body() + "\" ");
+                        writer.newLine();
                         if (!question.choices().isEmpty()){
                             for (Choice choice : question.choices()){
                                 writer.write("        @start-choice@ " + choice.index() + " " + "\"" + choice.body() + "\" @end-choice@\n");
                             }
                         }
+                        writer.write("    @end-question-body@\n");
                         writer.write("    @start-correct-answer@  @end-correct-answer@\n @end-question@");
                         break;
                     case Time:
                         writer.write("@start-question@\n" +
                                 "    @start-type@ time @end-type@\n" +
-                                "    @start-question-body@ \"" + question.body() + "\" @end-question-body@\n");
+                                "    @start-question-body@ \"" + question.body() + "\" ");
+                        writer.newLine();
                         if (!question.choices().isEmpty()){
                             for (Choice choice : question.choices()){
                                 writer.write("        @start-choice@ " + choice.index() + " " + "\"" + choice.body() + "\" @end-choice@\n");
                             }
                         }
+                        writer.write("    @end-question-body@\n");
                         writer.write("    @start-correct-answer@  @end-correct-answer@\n @end-question@");
                         break;
                     case NumericScale:
                         writer.write("@start-question@\n" +
                                 "    @start-type@ numeric-scale @end-type@\n" +
-                                "    @start-question-body@ \"" + question.body() + "\" @end-question-body@\n");
+                                "    @start-question-body@ \"" + question.body() + "\" ");
+                        writer.newLine();
                         if (!question.choices().isEmpty()){
                             for (Choice choice : question.choices()){
                                 writer.write("        @start-choice@ " + choice.index() + " " + "\"" + choice.body() + "\" @end-choice@\n");
                             }
                         }
+                        writer.write("    @end-question-body@\n");
                         writer.write("    @start-correct-answer@  @end-correct-answer@\n @end-question@");
                         break;
                 }
@@ -291,8 +307,8 @@ public class Main implements InterviewModelImporter {
                 if (interviewQuestion.body().equals(scoreQuestion.body())){
                     System.out.println("\nInterview q: " + interviewQuestion.body());
                     System.out.println("Score q: " + scoreQuestion.body());
-                    for (Answer interviewAnswer : interviewQuestion.correctAnswers()){
-                        for (Answer scoreAnswer : scoreQuestion.correctAnswers()){
+                    for (Answer interviewAnswer : interviewQuestion.answers()){
+                        for (Answer scoreAnswer : scoreQuestion.answers()){
                             if (interviewAnswer.givenAnswerBody().equals(scoreAnswer.correctAnswerBody())){
                                 System.out.println("Interview a: " + interviewAnswer.givenAnswerBody());
                                 System.out.println("Score a: " + scoreAnswer.correctAnswerBody());

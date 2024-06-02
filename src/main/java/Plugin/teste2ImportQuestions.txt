@@ -1,0 +1,74 @@
+@start-reference@ "AAAAAAAA-JuniorJavaSoftwareEngineer-FULL_TIME" @end-reference@
+
+@start-question@
+    @start-type@ true-false @end-type@
+    @start-question-body@ "Em Java, o operador == verifica a igualdade de valor" @end-question-body@
+    @start-correct-answer@ true
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ short-answer @end-type@
+    @start-question-body@ "Qual é o nome da função utilizada para imprimir texto em Python?" @end-question-body@
+    @start-correct-answer@ "print"
+        @start-score@ 5 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ single-choice @end-type@
+    @start-question-body@ "Qual dos seguintes algoritmos de ordenação tem a melhor complexidade de tempo no caso médio?"
+        @start-choice@ 1 "Merge Sort" @end-choice@
+        @start-choice@ 2 "Bubble Sort" @end-choice@
+        @start-choice@ 3 "Selection Sort" @end-choice@
+    @end-question-body@
+    @start-correct-answer@ 1
+        @start-score@ 25 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ multiple-choice @end-type@
+    @start-question-body@ "Quais dos seguintes são considerados princípios de POO:"
+        @start-choice@ 1 "Encapsulamento" @end-choice@
+        @start-choice@ 2 "Herança" @end-choice@
+        @start-choice@ 3 "Polimorfismo" @end-choice@
+    @end-question-body@
+    @start-correct-answer@ [1, 2, 3]
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ numerical @end-type@
+    @start-question-body@ "Qual é o valor máximo de um inteiro em Java?" @end-question-body@
+    @start-correct-answer@ 2147483647
+        @start-score@ 20 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ date @end-type@
+    @start-question-body@ "Em que data foi lançada a primeira versão do Python?" @end-question-body@
+    @start-correct-answer@ 20/02/1991
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ time @end-type@
+    @start-question-body@ "Se um processo de construção de código começa às 14:35 e leva 25 minutos, a que horas terminará?" @end-question-body@
+    @start-correct-answer@ 15:00:00
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ numeric-scale @end-type@
+    @start-question-body@ "Em uma escala de 1 a 5, quão confortável está com o uso de sistemas de controle de versão?" @end-question-body@
+    @start-correct-answer@ [1-5]
+        @start-score@ 5 @end-score@
+    @end-correct-answer@
+@end-question@
+

@@ -13,14 +13,14 @@ public class Teste {
         String templatePath = main.buildGeneralTemplateForQuestionsAndAnswers("src/main/java/Plugin");
         String path = main.buildTemplateForInterviewModel("src/main/java/Plugin", set);
         for (Question a : set){
-            for (Answer b : a.correctAnswers()){
+            for (Answer b : a.answers()){
                 System.out.println(a.body());
                 System.out.println(b.correctAnswerBody());
             }
         }
         System.out.println("--");
         for (Question a : set2){
-            for (Answer b : a.correctAnswers()){
+            for (Answer b : a.answers()){
                 System.out.println(a.body());
                 System.out.println(b.givenAnswerBody());
             }
