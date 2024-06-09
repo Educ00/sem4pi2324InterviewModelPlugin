@@ -41,8 +41,6 @@ public class Main implements InterviewModelImporter {
             CustomListener listener = new CustomListener();
             walker.walk(listener, tree);
             setToReturn = listener.questionSet();
-            System.out.println("\n---- InterviewModel ----\n");
-            System.out.println(setToReturn);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (Exception exception) {
@@ -61,6 +59,7 @@ public class Main implements InterviewModelImporter {
             outputPath = outputPath.concat(File.separator).concat("ImportQuestionsTemplate.txt");
         } catch (Exception exception) {
             exception.printStackTrace();
+            return null;
         }
         try (BufferedWriter writer = Files.newBufferedWriter(Path.of(outputPath), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
 
@@ -165,6 +164,7 @@ public class Main implements InterviewModelImporter {
             outputFilePath = outputFilePath.concat(File.separator).concat("template_for_interview_of_"+questionSet.iterator().next().jobOpeningReference().toString()+".txt");
         } catch (Exception exception) {
             exception.printStackTrace();
+            return null;
         }
         try (BufferedWriter writer = Files.newBufferedWriter(Path.of(outputFilePath), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
             writer.write("// --------------------------------------------------------------------------------");
@@ -300,18 +300,14 @@ public class Main implements InterviewModelImporter {
     }
 
     @Override
-    public double gradeInterview(String interviewFilePath, Set<Question> scoreQuestions) {
+    public double gradeInterview(Set<Question> interviewQuestions, Set<Question> scoreQuestions) {
         double score = 0;
-        for (Question interviewQuestion : parseFile(interviewFilePath)){
+        for (Question interviewQuestion : interviewQuestions){
             for (Question scoreQuestion : scoreQuestions){
                 if (interviewQuestion.body().equals(scoreQuestion.body())){
-                    System.out.println("\nInterview q: " + interviewQuestion.body());
-                    System.out.println("Score q: " + scoreQuestion.body());
                     for (Answer interviewAnswer : interviewQuestion.answers()){
                         for (Answer scoreAnswer : scoreQuestion.answers()){
                             if (interviewAnswer.givenAnswerBody().equals(scoreAnswer.correctAnswerBody())){
-                                System.out.println("Interview a: " + interviewAnswer.givenAnswerBody());
-                                System.out.println("Score a: " + scoreAnswer.correctAnswerBody());
                                 score += scoreAnswer.score();
                             }
                         }
@@ -319,7 +315,6 @@ public class Main implements InterviewModelImporter {
                 }
             }
         }
-
         return score;
     }
 }

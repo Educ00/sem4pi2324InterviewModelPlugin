@@ -4,7 +4,7 @@
     @start-type@ true-false @end-type@
     @start-question-body@ "É verdade que Python é lento?" @end-question-body@
     @start-correct-answer@ TrUe
-        @start-score@ 10 @end-score@
+        @start-score@ 1.5 @end-score@
     @end-correct-answer@
 @end-question@
 

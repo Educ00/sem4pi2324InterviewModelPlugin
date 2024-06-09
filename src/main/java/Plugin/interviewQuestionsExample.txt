@@ -1,0 +1,76 @@
+@start-reference@ "AAAAAAAA-JuniorJavaSoftwareEngineer-FULL_TIME" @end-reference@
+
+@start-question@
+    @start-type@ true-false @end-type@
+    @start-question-body@ "Is it true that Python is slow?" @end-question-body@
+    @start-correct-answer@ true
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ short-answer @end-type@
+    @start-question-body@ "Type wich language you are more confortable with:" @end-question-body@
+    @start-correct-answer@ "Java"
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+    @start-correct-answer@ "C"
+        @start-score@ 5 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ single-choice @end-type@
+    @start-question-body@ "Which language is faster?"
+        @start-choice@ 1 "C" @end-choice@
+        @start-choice@ 2 "Java" @end-choice@
+        @start-choice@ 3 "Python" @end-choice@
+    @end-question-body@
+    @start-correct-answer@ 1
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ multiple-choice @end-type@
+    @start-question-body@ "Order the following questions by its speed order."
+        @start-choice@ 1 "C" @end-choice@
+        @start-choice@ 2 "Java" @end-choice@
+        @start-choice@ 3 "Python" @end-choice@
+    @end-question-body@
+    @start-correct-answer@ [1, 2, 3]
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ numerical @end-type@
+    @start-question-body@ "What's the value of PI in 2 decimal cases" @end-question-body@
+    @start-correct-answer@ 3.14
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ date @end-type@
+    @start-question-body@ "What's the date of the first day of the 2024 year" @end-question-body@
+    @start-correct-answer@ 01/01/2024
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ time @end-type@
+    @start-question-body@ "At what hours does the sun stays at its most upright position" @end-question-body@
+    @start-correct-answer@ 12:00:00
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@
+
+@start-question@
+    @start-type@ numeric-scale @end-type@
+    @start-question-body@ "Type the range of the natural numbers greater than 0 and less or equal than 10" @end-question-body@
+    @start-correct-answer@ [1-10]
+        @start-score@ 10 @end-score@
+    @end-correct-answer@
+@end-question@

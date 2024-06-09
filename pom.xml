@@ -12,10 +12,12 @@
     <properties>
         <maven.compiler.source>20</maven.compiler.source>
         <maven.compiler.target>20</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+
         <eapli.framework.core.version>v24.1.0_RELEASE</eapli.framework.core.version>
         <eapli.framework.authz.version>v24.1.0_RELEASE</eapli.framework.authz.version>
         <eapli.framework.pubsub.version>v24.1.0_RELEASE</eapli.framework.pubsub.version>
+
     </properties>
 
     <dependencies>
@@ -41,23 +43,8 @@
             <version>${eapli.framework.pubsub.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>4.0.1</version>
-            <scope>provided</scope>
-        </dependency>
-
     </dependencies>
 
-    <repositories>
-
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-
-    </repositories>
     <build>
         <plugins>
             <plugin>
@@ -70,5 +57,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <!-- Nexus repository for EAPLI framwork -->
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
 
 </project>

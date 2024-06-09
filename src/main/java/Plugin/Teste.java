@@ -8,8 +8,8 @@ import java.util.Set;
 public class Teste {
     public static void main(String[] args) {
         Main main = new Main();
-        Set<Question> set = main.parseFile("src/main/java/Plugin/testeImportQuestions.txt");
-        Set<Question> set2 = main.parseFile("src/main/java/Plugin/testeAnswer.txt");
+        Set<Question> set = main.parseFile("src/main/java/Plugin/interviewQuestionsExample.txt");
+        Set<Question> set2 = main.parseFile("src/main/java/Plugin/interviewAnswersExample.txt");
         String templatePath = main.buildGeneralTemplateForQuestionsAndAnswers("src/main/java/Plugin");
         String path = main.buildTemplateForInterviewModel("src/main/java/Plugin", set);
         for (Question a : set){
@@ -27,6 +27,6 @@ public class Teste {
         }
         System.out.println("Path template interview: " + path);
         System.out.println("Path template: " + templatePath);
-        System.out.println("Rating: " + main.gradeInterview("src/main/java/Plugin/testeAnswer.txt", set));
+        System.out.println("Rating: " + main.gradeInterview(set2, set));
     }
 }
